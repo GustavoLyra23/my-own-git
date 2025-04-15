@@ -1,5 +1,6 @@
 import configparser
 import os
+from git_utils import repo_file
 
 
 class GitRepository(object):
@@ -15,7 +16,7 @@ class GitRepository(object):
         if not (force or os.path.isdir(self.gitdir)):
             raise Exception("Not a git repository: %s" % path)
 
-        # Read configuartion file in .git/config
+        # Read configuration file in .git/config
         self.conf = configparser.ConfigParser()
         cf = repo_file(self, "config")
         if cf and os.path.exists(cf):
